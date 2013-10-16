@@ -93,8 +93,9 @@
 			<table>
 				<thead>
 					<tr>
-						<th>Status</th>
+						<th>ID Number</th>
 						<th>Location</th>
+						<th>Status</th>
 						<th>Wind Class</th>
 						<th>Output or Expected Output</th>
 						<th>Population Density</th>
@@ -104,8 +105,9 @@
 				<tbody>
 					{{#each}}
 					<tr>
-						<td>{{status}}</td>
+						<td>{{id}}</td>
 						<td>{{location}}</td>
+						<td>{{status}}</td>
 						<td>Class {{windClass}}</td>
 						<td>{{output}} <span class="units">Megawatts</span></td>
 						<td>{{populationDensity}} <span class="units">people/sq.mi.</span></td>
