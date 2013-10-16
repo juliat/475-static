@@ -20,7 +20,10 @@ WindfarmApp.Windfarm.FIXTURES = [
  },
  {
    id: 2,
-   location: 'somewhere',
+   location: 'Tucumcari, NM',
+   elevation: 1564,
+   capacityFactor: 0.49,
+   megawatts: 171.8,
    status: 'active',
    windClass: 4,
    output: 100,
@@ -29,11 +32,27 @@ WindfarmApp.Windfarm.FIXTURES = [
  },
  {
    id: 3,
-   location: 'somewhere',
-   status: 'opposed',
+   location: 'Alzada, MT',
+   elevation: 1161,
+   capacityFactor: 0.487,
+   megawatts: 121,
+   status: 'proposed',
    windClass: 2,
    output: 80,
    populationDensity: 70,
    numEndangeredSpecies: 2,
+ },
+ {
+ 	id: 4,
+ 	location: 'Killdeer, ND',
+ 	elevation: 984,
+ 	capacityFactor: 0.48,
+ 	megawatts: 202.3,
+ 	status: 'proposed',
+ 	windClass: 4,
+ 	output: 42,
+ 	populationDensity: 15,
+ 	numEndangeredSpecies: 3,
  }
+
 ];
