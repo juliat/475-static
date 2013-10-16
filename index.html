@@ -7,6 +7,7 @@
 		<link rel="stylesheet" type="text/css" href="css/styles.css"/> 
 	</head>
 	<body>
+		<script type="text/x-handlebars" data-template-name="windfarms">
 		<div class="filters"> 
 			<h1>Filter Wind Farm Sites</h1>
 			<form>
@@ -101,132 +102,27 @@
 					</tr>
 				</thead>         
 				<tbody>
+					{{#each}}
 					<tr>
-						<td>Opposed</td>
-						<td>Warren County, NY</td>
-						<td>Class 3</td>
-						<td>100 <span class="units">Megawatts</span></td>
-						<td>6 <span class="units">people/sq.mi.</span></td>
-						<td>6 <span class="units">species</span></td>
+						<td>{{status}}</td>
+						<td>{{location}}</td>
+						<td>Class {{windClass}}</td>
+						<td>{{output}} <span class="units">Megawatts</span></td>
+						<td>{{populationDensity}} <span class="units">people/sq.mi.</span></td>
+						<td>{{numEndangeredSpecies}} <span class="units">species</span></td>
 					</tr>
-					<tr>
-						<td>Opposed</td>
-						<td>Warren County, NY</td>
-						<td>Class 3</td>
-						<td>100 <span class="units">Megawatts</span></td>
-						<td>6 <span class="units">people/sq.mi.</span></td>
-						<td>6 <span class="units">species</span></td>
-					</tr>
-					<tr>
-						<td>Opposed</td>
-						<td>Warren County, NY</td>
-						<td>Class 3</td>
-						<td>100 <span class="units">Megawatts</span></td>
-						<td>6 <span class="units">people/sq.mi.</span></td>
-						<td>6 <span class="units">species</span></td>
-					</tr>
-					<tr>
-						<td>Opposed</td>
-						<td>Warren County, NY</td>
-						<td>Class 3</td>
-						<td>100 <span class="units">Megawatts</span></td>
-						<td>6 <span class="units">people/sq.mi.</span></td>
-						<td>6 <span class="units">species</span></td>
-					</tr>
-					<tr>
-						<td>Opposed</td>
-						<td>Warren County, NY</td>
-						<td>Class 3</td>
-						<td>100 <span class="units">Megawatts</span></td>
-						<td>6 <span class="units">people/sq.mi.</span></td>
-						<td>6 <span class="units">species</span></td>
-					</tr>
-					<tr>
-						<td>Opposed</td>
-						<td>Warren County, NY</td>
-						<td>Class 3</td>
-						<td>100 <span class="units">Megawatts</span></td>
-						<td>6 <span class="units">people/sq.mi.</span></td>
-						<td>6 <span class="units">species</span></td>
-					</tr>
-					<tr>
-						<td>Opposed</td>
-						<td>Warren County, NY</td>
-						<td>Class 3</td>
-						<td>100 <span class="units">Megawatts</span></td>
-						<td>6 <span class="units">people/sq.mi.</span></td>
-						<td>6 <span class="units">species</span></td>
-					</tr>
-					<tr>
-						<td>Opposed</td>
-						<td>Warren County, NY</td>
-						<td>Class 3</td>
-						<td>100 <span class="units">Megawatts</span></td>
-						<td>6 <span class="units">people/sq.mi.</span></td>
-						<td>6 <span class="units">species</span></td>
-					</tr>
-					<tr>
-						<td>Opposed</td>
-						<td>Warren County, NY</td>
-						<td>Class 3</td>
-						<td>100 <span class="units">Megawatts</span></td>
-						<td>6 <span class="units">people/sq.mi.</span></td>
-						<td>6 <span class="units">species</span></td>
-					</tr>
-					<tr>
-						<td>Opposed</td>
-						<td>Warren County, NY</td>
-						<td>Class 3</td>
-						<td>100 <span class="units">Megawatts</span></td>
-						<td>6 <span class="units">people/sq.mi.</span></td>
-						<td>6 <span class="units">species</span></td>
-					</tr>
-					<tr>
-						<td>Opposed</td>
-						<td>Warren County, NY</td>
-						<td>Class 3</td>
-						<td>100 <span class="units">Megawatts</span></td>
-						<td>6 <span class="units">people/sq.mi.</span></td>
-						<td>6 <span class="units">species</span></td>
-					</tr>
-					<tr>
-						<td>Opposed</td>
-						<td>Warren County, NY</td>
-						<td>Class 3</td>
-						<td>100 <span class="units">Megawatts</span></td>
-						<td>6 <span class="units">people/sq.mi.</span></td>
-						<td>6 <span class="units">species</span></td>
-					</tr>
-					<tr>
-						<td>Opposed</td>
-						<td>Warren County, NY</td>
-						<td>Class 3</td>
-						<td>100 <span class="units">Megawatts</span></td>
-						<td>6 <span class="units">people/sq.mi.</span></td>
-						<td>6 <span class="units">species</span></td>
-					</tr>
-					<tr>
-						<td>Opposed</td>
-						<td>Warren County, NY</td>
-						<td>Class 3</td>
-						<td>100 <span class="units">Megawatts</span></td>
-						<td>6 <span class="units">people/sq.mi.</span></td>
-						<td>6 <span class="units">species</span></td>
-					</tr>
-					<tr>
-						<td>Opposed</td>
-						<td>Warren County, NY</td>
-						<td>Class 3</td>
-						<td>100 <span class="units">Megawatts</span></td>
-						<td>6 <span class="units">people/sq.mi.</span></td>
-						<td>6 <span class="units">species</span></td>
-					</tr>
+					{{/each}}
 				</tbody>
 			</table>	
 		</div>
+		</script>
 		<script src="js/libs/jquery-1.10.2.min.js"></script>
 		<script src="js/libs/handlebars-1.0.0.js"></script>
 		<script src="js/libs/ember.js"></script>
 		<script src="js/libs/ember-data.js"></script>
+
+		<script src="js/application.js"></script>
+ 		<script src="js/router.js"></script>
+ 		<script src="js/models/windfarm.js"></script>
 	</body>
 </html>
