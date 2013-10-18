@@ -27,7 +27,31 @@ window.onload = function() {
 	 			  age_data['breakdown']['25-64'],
 	 			  age_data['breakdown']['65 and over'],
 				 ];
-	r.piechart(320, 240, 150, values)
+
+	var legend_setup = {
+		legend: ["Under 17: %%.%%", "18-24: %%.%%", "25-64: %%.%%", "65+: %%.%%"],
+		legendpos: "west",
+	}
+
+	pie = r.piechart(320, 240, 150, values, legend_setup)
+
+	pie.hover(function () {
+        this.sector.stop();
+        this.sector.scale(1.1, 1.1, this.cx, this.cy);
+
+        if (this.label) {
+            this.label[0].stop();
+            this.label[0].attr({ r: 6 });
+            this.label[1].attr({ "font-weight": 800 });
+        }
+    }, function () {
+        this.sector.animate({ transform: 's1 1 ' + this.cx + ' ' + this.cy }, 500, "bounce");
+
+        if (this.label) {
+            this.label[0].animate({ r: 5 }, 500, "bounce");
+            this.label[1].attr({ "font-weight": 400 });
+        }
+    });
 
 /*
 	// Creates circle at x = 50, y = 40, with radius 10
