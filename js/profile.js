@@ -1,7 +1,86 @@
+var age_data = {
+	'breakdown': {
+		'under 17': 14.96,
+		'18 to 24': 4.46,
+		'25-64': 50.95,
+		'65 and over': 29.63,
+	},
+	'2000 breakdown': {
+		'under 17': 19.7,
+		'18 to 24': 4.46,
+		'25-64': 48.97,
+		'65 and over': 26.86,
+	},
+	'average breakdown': {
+		'under 17': 23.5,
+		'18 to 24': 7.5,
+		'25-64': 52.2,
+		'65 and over': 16.7,		
+	},
+	'minimum breakdown': {
+		'under 17': 0.99,
+		'18 to 24': 0,
+		'25-64': 28.99,
+		'65 and over': 3.66,	
+	},
+	'maximum breakdown': {
+		'under 17': 43.68,
+		'18 to 24': 45.67,
+		'25-64': 80.25,
+		'65 and over': 63.38,			
+	}
+}
+
+
+// Params:
+// - minValue as float
+// - maxValue as float
+// - thisValue
+// - hashmap of other values, names and values 
+
+function BarViz(minValue, maxValue, thisValue, otherValues) {
+	this.width = 400;
+	this.height = 30;
+	this.minValue = minValue;
+	this.maxValue = maxValue;
+	this.thisValue = thisValue;
+	this.otherValues = otherValues;
+}
+
+// set up BarViz class
+BarViz.prototype.draw = function(r, x, y) {
+	// draw base rectangle
+	r.rect(x, y, this.width, this.height);
+
+	// draw bar
+	var thisValueWidth = (this.thisValue/this.maxValue) * this.width;
+	r.rect(x, y, thisValueWidth, this.height).attr({fill: "#bfa22f"});
+
+	// label min and max
+	var minLabelX = x;
+	var maxLabelX = x + this.width;
+	var thisLabelX = x + thisValueWidth;
+	var labelsY = y  - 10;
+	r.text(minLabelX, labelsY, "Minimum for all sites: " + this.minValue + "%");
+	r.text(maxLabelX, labelsY, "Maximum for all sites: " + this.maxValue + "%");	// draw thisValue rectangle, with width proportional to fraction of Max
+	r.text(thisLabelX, labelsY, "For this site: " + this.thisValue + "%");
+	
+	var otherLabelsY = y + this.height + 10;
+	// draw lines for other values
+	console.log(this.otherValues);
+	for (var key in this.otherValues){
+		var value = this.otherValues[key];
+		var valueX = (value/this.maxValue)*this.width;
+		// http://raphaeljs.com/reference.html#Paper.path
+		r.path("M"+valueX+","+y+"V"+(y+this.height));
+		r.text(valueX, otherLabelsY, key + ": " + value + "%");
+	}
+
+};
+
+
 window.onload = function() {
 	var r = Raphael("age");
-
-	var age_data = getDataFromHTML("age");
 
 	var values = [age_data['breakdown']['under 17'],
 	 			  age_data['breakdown']['18 to 24'],
@@ -14,11 +93,12 @@ window.onload = function() {
 		legendpos: "east",
 	}
 
-	var xPosition = 320;
-	var yPosition = 100;
+	var xPosition = 70;
+	var yPosition = 60;
 	var radius = 55;
 	pie = r.piechart(xPosition, yPosition, radius, values, legend_setup)
 
+	// bind on hover behavior to the pie
 	pie.hover(function () {
         this.sector.stop();
         // increase the size of the sector being hovered over
@@ -43,4 +123,16 @@ window.onload = function() {
             this.label[1].attr({ "font-weight": 400 });
         }
     });
+
+	
+	var minValue = age_data['minimum breakdown']['under 17'];
+	var maxValue = age_data['maximum breakdown']['under 17'];
+	var thisValue = age_data['breakdown']['under 17'];
+	var otherValues = {
+		'average': age_data['average breakdown']['under 17'],
+	}
+	barViz = new BarViz(minValue, maxValue, thisValue, otherValues);
+	barViz.draw(r, 100, 200);
+
 }
+
