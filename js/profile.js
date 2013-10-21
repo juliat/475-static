@@ -2,31 +2,31 @@ var age_data = {
 	'breakdown': {
 		'under 17': 14.96,
 		'18 to 24': 4.46,
-		'25-64': 50.95,
+		'25 to 64': 50.95,
 		'65 and over': 29.63,
 	},
 	'2000 breakdown': {
 		'under 17': 19.7,
 		'18 to 24': 4.46,
-		'25-64': 48.97,
+		'25 to 64': 48.97,
 		'65 and over': 26.86,
 	},
 	'average breakdown': {
 		'under 17': 23.5,
 		'18 to 24': 7.5,
-		'25-64': 52.2,
+		'25 to 64': 52.2,
 		'65 and over': 16.7,		
 	},
 	'minimum breakdown': {
 		'under 17': 0.99,
 		'18 to 24': 0,
-		'25-64': 28.99,
+		'25 to 64': 28.99,
 		'65 and over': 3.66,	
 	},
 	'maximum breakdown': {
 		'under 17': 43.68,
 		'18 to 24': 45.67,
-		'25-64': 80.25,
+		'25 to 64': 80.25,
 		'65 and over': 63.38,			
 	}
 }
@@ -38,17 +38,26 @@ var age_data = {
 // - thisValue
 // - hashmap of other values, names and values 
 
-function BarViz(thisValue, otherValues) {
+function BarViz(name, thisValue, otherValues) {
 	this.width = 400;
 	this.height = 30;
 	this.minValue = 0;
 	this.maxValue = 100;
+	this.name = name;
 	this.thisValue = thisValue;
 	this.otherValues = otherValues;
 }
 
 // set up BarViz class
 BarViz.prototype.draw = function(r, x, y) {
+	// draw title
+	var titleX = x - 50;
+	var titleY = y;
+	r.text(titleX, titleY, this.name).attr(
+		{
+			"font-weight": "800",
+		});
+
 	// draw base rectangle
 	r.rect(x, y, this.width, this.height);
 
@@ -71,16 +80,22 @@ BarViz.prototype.draw = function(r, x, y) {
 
 
 window.onload = function() {
-	var r = Raphael("age");
+	var width = 1000;
+	var height = 1000;
+	var r = Raphael("age", width, height);
 
-	var values = [age_data['breakdown']['under 17'],
-	 			  age_data['breakdown']['18 to 24'],
-	 			  age_data['breakdown']['25-64'],
-	 			  age_data['breakdown']['65 and over'],
-				 ];
+	var values = [];
+	var legend = [];
+	var categories = [];
+	for (var category in age_data['breakdown']) {
+		categories.push(category);
+		var value = age_data['breakdown'][category];
+		values.push(value);
+		legend.push(category + ": %%.%%");
+	}
 
 	var legend_setup = {
-		legend: ["Under 17: %%.%%", "18-24: %%.%%", "25-64: %%.%%", "65+: %%.%%"],
+		legend: legend,
 		legendpos: "east",
 	}
 
@@ -115,15 +130,17 @@ window.onload = function() {
         }
     });
 
-	
-	var thisValue = age_data['breakdown']['under 17'];
-	var otherValues = {
-		'Average': age_data['average breakdown']['under 17'],
-		'Minimum': age_data['minimum breakdown']['under 17'],
-		'Maximum': age_data['maximum breakdown']['under 17'],
+	for (var i=0; i<categories.length; i++) {
+		var category = categories[i];
+		var thisValue = age_data['breakdown'][category];
+		var otherValues = {
+			'Average': age_data['average breakdown'][category],
+			'Minimum': age_data['minimum breakdown'][category],
+			'Maximum': age_data['maximum breakdown'][category],
+		}
+		barViz = new BarViz(category, thisValue, otherValues);
+		var verticalSpacing = 80;
+		barViz.draw(r, 100, 200 + (i*verticalSpacing));		
 	}
-	barViz = new BarViz(thisValue, otherValues);
-	barViz.draw(r, 100, 200);
-
 }
 
