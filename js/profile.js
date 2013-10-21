@@ -38,11 +38,11 @@ var age_data = {
 // - thisValue
 // - hashmap of other values, names and values 
 
-function BarViz(minValue, maxValue, thisValue, otherValues) {
+function BarViz(thisValue, otherValues) {
 	this.width = 400;
 	this.height = 30;
-	this.minValue = minValue;
-	this.maxValue = maxValue;
+	this.minValue = 0;
+	this.maxValue = 100;
 	this.thisValue = thisValue;
 	this.otherValues = otherValues;
 }
@@ -55,22 +55,13 @@ BarViz.prototype.draw = function(r, x, y) {
 	// draw bar
 	var thisValueWidth = (this.thisValue/this.maxValue) * this.width;
 	r.rect(x, y, thisValueWidth, this.height).attr({fill: "#bfa22f"});
-
-	// label min and max
-	var minLabelX = x;
-	var maxLabelX = x + this.width;
-	var thisLabelX = x + thisValueWidth;
-	var labelsY = y  - 10;
-	r.text(minLabelX, labelsY, "Minimum for all sites: " + this.minValue + "%");
-	r.text(maxLabelX, labelsY, "Maximum for all sites: " + this.maxValue + "%");	// draw thisValue rectangle, with width proportional to fraction of Max
-	r.text(thisLabelX, labelsY, "For this site: " + this.thisValue + "%");
 	
 	var otherLabelsY = y + this.height + 10;
 	// draw lines for other values
 	console.log(this.otherValues);
 	for (var key in this.otherValues){
 		var value = this.otherValues[key];
-		var valueX = (value/this.maxValue)*this.width;
+		var valueX = x+ (value/this.maxValue)*this.width;
 		// http://raphaeljs.com/reference.html#Paper.path
 		r.path("M"+valueX+","+y+"V"+(y+this.height));
 		r.text(valueX, otherLabelsY, key + ": " + value + "%");
@@ -125,13 +116,13 @@ window.onload = function() {
     });
 
 	
-	var minValue = age_data['minimum breakdown']['under 17'];
-	var maxValue = age_data['maximum breakdown']['under 17'];
 	var thisValue = age_data['breakdown']['under 17'];
 	var otherValues = {
-		'average': age_data['average breakdown']['under 17'],
+		'Average': age_data['average breakdown']['under 17'],
+		'Minimum': age_data['minimum breakdown']['under 17'],
+		'Maximum': age_data['maximum breakdown']['under 17'],
 	}
-	barViz = new BarViz(minValue, maxValue, thisValue, otherValues);
+	barViz = new BarViz(thisValue, otherValues);
 	barViz.draw(r, 100, 200);
 
 }
