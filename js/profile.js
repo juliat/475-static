@@ -22,6 +22,8 @@ var age_data = {
 window.onload = function() {
 	var r = Raphael("age");
 
+	var age_data = getDataFromHTML("age");
+
 	var values = [age_data['breakdown']['under 17'],
 	 			  age_data['breakdown']['18 to 24'],
 	 			  age_data['breakdown']['25-64'],
@@ -30,36 +32,36 @@ window.onload = function() {
 
 	var legend_setup = {
 		legend: ["Under 17: %%.%%", "18-24: %%.%%", "25-64: %%.%%", "65+: %%.%%"],
-		legendpos: "west",
+		legendpos: "east",
 	}
 
-	pie = r.piechart(320, 240, 150, values, legend_setup)
+	var xPosition = 320;
+	var yPosition = 100;
+	var radius = 55;
+	pie = r.piechart(xPosition, yPosition, radius, values, legend_setup)
 
 	pie.hover(function () {
         this.sector.stop();
-        this.sector.scale(1.1, 1.1, this.cx, this.cy);
+        // increase the size of the sector being hovered over
+        var scaleFactor = 1.04;
+        this.sector.scale(scaleFactor, scaleFactor, this.cx, this.cy);
 
         if (this.label) {
             this.label[0].stop();
+            // increase radius of circle adjacent to the label
             this.label[0].attr({ r: 6 });
+            // make the label bold
             this.label[1].attr({ "font-weight": 800 });
         }
     }, function () {
         this.sector.animate({ transform: 's1 1 ' + this.cx + ' ' + this.cy }, 500, "bounce");
 
         if (this.label) {
-            this.label[0].animate({ r: 5 }, 500, "bounce");
+        	// make the label bounce when it shrinks again
+        	var animationTime = 500;
+            this.label[0].animate({ r: 5 }, animationTime, "bounce");
+            // font weight back to normal
             this.label[1].attr({ "font-weight": 400 });
         }
     });
-
-/*
-	// Creates circle at x = 50, y = 40, with radius 10
-	var circle = r.circle(50, 40, 10);
-	// Sets the fill attribute of the circle to red (#f00)
-	circle.attr("fill", "#f00");
-
-	// Sets the stroke attribute of the circle to white
-	circle.attr("stroke", "#fff");
-*/
 }
