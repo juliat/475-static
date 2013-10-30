@@ -189,6 +189,10 @@ article.profile {
 	text-align: right;
 }
 
+.windSiteMeta nav {
+	border-bottom: none;
+}
+
 .windSiteMeta .profile-pic {
 	height: 14em;
 	width: 100%;
@@ -232,10 +236,11 @@ article.profile {
 }
 
 .windSiteInfo {
-	width: 74%;
+	width: 74.8%;
 	padding-left: 2em;
 	height: 100%;
 	overflow: scroll;
+	border-right:  1px solid #eee;
 }
 .windSiteInfo h2  {
 	margin-bottom: 0;
