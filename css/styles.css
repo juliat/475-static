@@ -25,11 +25,6 @@ nav {
 	padding: 1em 0;
 }
 
-.profile nav {
-    border-top: 1px solid #e6e6e6;
-    margin-top: 1em;
-}
-
 .description {
 	width: 40%;
 	text-align: center;
@@ -188,10 +183,12 @@ article.profile {
 
 .windSiteMeta nav {
 	border-bottom: none;
+	float: right;
+	width: 54%;
 }
 
 .windSiteMeta .profile-pic {
-	height: 14em;
+	height: 11.2em;
 	width: 100%;
 	background-image: url("../img/sample-profile-pic.png");
 	background-size: 123%;
@@ -199,9 +196,17 @@ article.profile {
 	margin-bottom: 0.5em
 }
 
+.windSiteMeta hgroup {
+    height: inherit;
+    float: left;
+    width: 46%;
+}
+
 .windSiteMeta h1, .windSiteMeta h2, .windSiteMeta h3 {
     margin: 0;
     font-size: 1em;
+	display: inline-block;
+	padding-right: 1em;
 }
 
 .windSiteMeta h4 {
@@ -219,6 +224,7 @@ article.profile {
 .windSiteMeta nav ul {
 	list-style-type: none;
 	padding: 0;
+	margin: 0;
 }
 .windSiteMeta nav > ul > li h5 {
 	font-weight: bold;
@@ -229,9 +235,13 @@ article.profile {
 	font-size: 0.9em;
 	color: #666;
 	font-weight: normal;
+	visibility: hidden;
+	display: none;
 }
 
 .windSiteInfo {
+    clear: both;
+    border-top: 1px solid #ededed;
 }
 .windSiteInfo h2  {
 	margin-bottom: 0;
