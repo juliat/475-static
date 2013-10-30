@@ -1,7 +1,7 @@
 body, html {
 	height: 100%;
 }
-
+/*fix border*/
 nav {
   background-color: #E6E6E6;
   width: 100%;
@@ -74,10 +74,11 @@ tr:nth-child(odd){
 }
 
 .results th, td {
+	padding-left: .75em;
 	border-left: 1px solid #eee;
 }
 .results td {
-	padding: 0.25m 0.5em;
+	padding: 0.25em 0.5em;
 }
 .results td .units {
 	font-size: 0.7em;
