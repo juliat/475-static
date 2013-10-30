@@ -10,12 +10,10 @@
 		<script type="text/x-handlebars" data-template-name="windfarms">
 
 		<nav>
-			<ul>
-			<li class="navLeft"><strong>Wind Farm Information</strong>
+			<div class="logo">Wind Farm Information</div>
 			<input type="search" placeholder="Enter a location to see wind farms closest to it" class="navSearch"> </input></li>
 			
-			<li class="navRight"><em>A tool to explore information about existing and proposed wind farms in the United States</em><a href="">...</a></li>
-			</ul>
+			<div class="description">A tool to explore information about existing and proposed wind farms in the United States<a href="">...</a></div>
 		</nav>
 
 		<div class="map">
@@ -25,11 +23,11 @@
 
 		<div class="results">
 			<div class="resultsStatus">
-				<div id="resultsCount"><small><strong>1000 Results, Limited by Location</strong></small></div>
-				<div id="resultsChangeColumn"><small><a href="">Change Columns</a></small></div>
+				<p class="resultsCount">1000 Results, Limited by Location</p>
+				<p class="resultsChangeColumn"><a href="">Change Columns</a></p>
 			</div>
 		
-			<table class="zebra-striped">
+			<table>
 				<thead>
 					<tr>
 						<th>ID</th>
