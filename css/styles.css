@@ -25,11 +25,13 @@ nav {
 	padding: 1em 0;
 }
 
-nav {
+.profile nav {
+    border-top: 1px solid #e6e6e6;
+    margin-top: 1em;
 }
 
 .description {
-	width: 49.25%;
+	width: 40%;
 	text-align: center;
 	margin-left: 0;
 	font-weight: lighter;
@@ -38,7 +40,7 @@ nav {
 }
 
 .searchContainer {
-	width: 35.75%;
+	width: 42.75%;
 	padding-left: inherit;
 	border-left: 1px solid #e6e6e6;
 	border-right: 1px solid #e6e6e6;
@@ -71,7 +73,7 @@ nav {
 }
 
 .mapShadow, .map, .results {
-	width: 50%;
+	width: 57%;
 }
 .map iframe {
 	width: 100%;
@@ -96,6 +98,8 @@ nav {
 
 .results {
 	font-size: 0.9em;
+	width: 43%;
+	float: right;
 }
 
 .results table {
@@ -169,8 +173,70 @@ article.profile {
     left: 0;
     background-color: white;
     height: 100%;
-    width: 50%;
+    width: 57%;
    	-webkit-box-shadow: inset 3px 4px 8px -3px rgba(211, 211, 211, 0.6);
 	-moz-box-shadow: inset 3px 4px 8px -3px rgba(211, 211, 211, 0.6);
 	box-shadow: inset 3px 4px 8px -3px rgba(211, 211, 211, 0.6);
+}
+
+.windSiteMeta, .windSiteInfo {
+	display: inline-block;
+	float: left;
+}
+
+.windSiteMeta {
+    width: 25.2%;
+	text-align: right;
+}
+
+.windSiteMeta .profile-pic {
+	height: 14em;
+	width: 100%;
+	background-image: url("../img/sample-profile-pic.png");
+	background-size: 123%;
+	background-position: 50%;
+	margin-bottom: 0.5em
+}
+
+.windSiteMeta h1, .windSiteMeta h2, .windSiteMeta h3 {
+    margin: 0;
+    font-size: 1em;
+}
+
+.windSiteMeta h4 {
+    font-weight: normal;
+    font-style: italic;
+    font-size: 0.9em;
+}
+.windSiteMeta h2 {
+    font-weight: normal;
+}
+.windSiteMeta .status {
+    font-style: italic;
+}
+
+.windSiteMeta nav ul {
+	list-style-type: none;
+	padding: 0;
+}
+.windSiteMeta nav > ul > li h5 {
+	font-weight: bold;
+	text-align: right;
+	margin-top: 1em; 
+	margin-bottom: 0.25em;
+}
+.windSiteMeta nav ul ul li {
+	font-size: 0.9em;
+	color: #666;
+	font-weight: normal;
+}
+
+.windSiteInfo {
+	width: 74%;
+	padding-left: 2em;
+	height: 100%;
+	overflow: scroll;
+}
+.windSiteInfo h2  {
+	margin-bottom: 0;
 }
