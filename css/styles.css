@@ -1,35 +1,83 @@
 body, html {
 	height: 100%;
 }
+
+nav {
+  background-color: #E6E6E6;
+  width: 100%;
+  height: 3em;
+  padding: 2px; 
+  border: 2px solid;
+}
+
+nav ul {
+    width: 100%; 
+}
+
+nav ul li {
+	display: block;
+	float: left;
+}
+
+.navLeft, .navRight{
+	width: 50%;
+	background-color: #E6E6E6;
+}
+
+.navSearch{
+	width: 30em;
+}
+
 .map, .results {
 	display: inline-block;
 	float: left;
-	border: 1px solid black;
 	height: 100%;
 	overflow: scroll;
 }
 
-.map {
-	width: 49%;
+.map, .results {
+	width: 50%;
 }
 .map iframe {
 	width: 100%;
 	height: 100%;
 }
 
+.resultsStatus{
+	padding: 2px; 
+    border: 2px solid;
+	height: 2em;
+}
+
+#resultsCount{
+	float: left;
+}
+
+#resultsChangeColumn{
+	float: right;
+}
+
 .results {
-	width: 50%;
 	font-size: 0.9em;
 }
 
-.results tr {
+.results tr{
 	border-bottom: 1px solid #ccc;
 }
+
+tr:nth-child(even){
+	background-color: #EAEAEA;
+}
+
+tr:nth-child(odd){
+	background-color: white;
+}
+
 .results th, td {
 	border-left: 1px solid #eee;
 }
 .results td {
-	padding: 0.25em 0.5em;
+	padding: 0.25m 0.5em;
 }
 .results td .units {
 	font-size: 0.7em;

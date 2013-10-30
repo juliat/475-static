@@ -9,30 +9,44 @@
 	<body>
 		<script type="text/x-handlebars" data-template-name="windfarms">
 
+		<nav>
+			<ul>
+			<li class="navLeft"><strong>Wind Farm Information</strong>
+			<input type="search" placeholder="Enter a location to see wind farms closest to it" class="navSearch"> </input></li>
+			
+			<li class="navRight"><em>A tool to explore information about existing and proposed wind farms in the United States</em><a href="">...</a></li>
+			</ul>
+		</nav>
+
 		<div class="map">
 			<iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="./index_files/maps.html"></iframe><br>
 		</div>
 
 
 		<div class="results">
-			<table>
+			<div class="resultsStatus">
+				<div id="resultsCount"><small><strong>1000 Results, Limited by Location</strong></small></div>
+				<div id="resultsChangeColumn"><small><a href="">Change Columns</a></small></div>
+			</div>
+		
+			<table class="zebra-striped">
 				<thead>
 					<tr>
-						<th>ID Number</th>
-						<th>Location</th>
+						<th>ID</th>
 						<th>Status</th>
+						<th>Location</th>
 						<th>Wind Class</th>
-						<th>Output or Expected Output</th>
+						<th>Megawatts</th>
 						<th>Population Density</th>
-						<th>Number of Endangered <span class="units">species</span></th>
+						<th>Endangered <span class="units">species</span></th>
 					</tr>
 				</thead>         
 				<tbody>
 					{{#each}}
 					<tr>
 						<td>{{id}}</td>
-						<td>{{location}}</td>
 						<td>{{status}}</td>
+						<td>{{location}}</td>
 						<td>Class {{windClass}}</td>
 						<td>{{output}} <span class="units">Megawatts</span></td>
 						<td>{{populationDensity}} <span class="units">people/sq.mi.</span></td>
