@@ -3,12 +3,12 @@
 <html>
 	<head>
 		<title>Wind Farms</title>
-		<link rel="stylesheet" type="text/css" href="css/normalize.css"/> 
-		<link rel="stylesheet" type="text/css" href="css/styles.css"/> 
+		<link rel="stylesheet" type="text/css" href="css/normalize.css"/>
+		<link rel="stylesheet" type="text/css" href="css/styles.css"/>
 	</head>
 	<body>
 		<script type="text/x-handlebars" data-template-name="windfarms">
-		<div class="filters"> 
+		<div class="filters">
 			<h1>Filter Wind Farm Sites</h1>
 			<form>
 				<fieldset>
@@ -19,13 +19,13 @@
 					<h2>Wind Farm Characteristics</h2>
 
 					<div class="status-select">
-						<input type="checkbox" id="active"> 
+						<input type="checkbox" id="active">
 						<label for="active">active</label>
 
 						<input type="checkbox" id="proposed">
 						<label for="proposed">proposed</label>
 
-						<input type="checkbox" id="opposed"> 
+						<input type="checkbox" id="opposed">
 						<label for="opposed">opposed</label>
 					</div>
 
@@ -33,8 +33,8 @@
 					<button>Filter which opposed sites you see</button>
 
 					<label for="windclass">Wind Power Class</label>
-					Between <input type="text" size="2" id="windclass" placeholder="1">and<input type="text" size="2" placeholder="6">  
-	
+					Between <input type="text" size="2" id="windclass" placeholder="1">and<input type="text" size="2" placeholder="6">
+
 					<label for="megawatts">Megawatts</label>
 					Between <input type="text" size="5" id="megawatts" placeholder="0"> and <input type="text" size="5"placeholder="100">
 				</fieldset>
@@ -42,14 +42,14 @@
 				<fieldset>
 					<h2>Show Data Within a Radius of</h2>
 
-					<div class="radius-select"> 
-						<input type="radio" id="5miles" value="5">
+					<div class="radius-select">
+						<input name="radius" type="radio" id="5miles" value="5" checked="checked">
 						<label for="5miles">5 miles</label>
 
-						<input type="radio" id="15miles" value="15">
+						<input name="radius" type="radio" id="15miles" value="15">
 						<label for="15miles">15 miles</label>
 
-						<input type="radio" id="30miles" value="30">
+						<input name="radius" type="radio" id="30miles" value="30">
 						<label for="30miles" id="30miles" value="30">30 miles</label>
 					</div>
 				</fieldset>
@@ -101,7 +101,7 @@
 						<th>Population Density</th>
 						<th>Number of Endangered <span class="units">species</span></th>
 					</tr>
-				</thead>         
+				</thead>
 				<tbody>
 					{{#each}}
 					<tr>
@@ -115,7 +115,7 @@
 					</tr>
 					{{/each}}
 				</tbody>
-			</table>	
+			</table>
 		</div>
 		</script>
 		<script src="js/libs/jquery-1.10.2.min.js"></script>
