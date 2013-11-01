@@ -15,19 +15,19 @@ var age_data = {
 		'under 17': 23.5,
 		'18 to 24': 7.5,
 		'25 to 64': 52.2,
-		'65 and over': 16.7,		
+		'65 and over': 16.7,
 	},
 	'minimum breakdown': {
 		'under 17': 0.99,
 		'18 to 24': 0,
 		'25 to 64': 28.99,
-		'65 and over': 3.66,	
+		'65 and over': 3.66,
 	},
 	'maximum breakdown': {
 		'under 17': 43.68,
 		'18 to 24': 45.67,
 		'25 to 64': 80.25,
-		'65 and over': 63.38,			
+		'65 and over': 63.38,
 	}
 }
 
@@ -36,7 +36,7 @@ var age_data = {
 // - minValue as float
 // - maxValue as float
 // - thisValue
-// - hashmap of other values, names and values 
+// - hashmap of other values, names and values
 
 function BarViz(name, thisValue, otherValues) {
 	this.width = 400;
@@ -49,7 +49,7 @@ function BarViz(name, thisValue, otherValues) {
 }
 
 // set up BarViz class
-BarViz.prototype.draw = function(r, x, y) {
+BarViz.prototype.draw = function(r, x, y, color) {
 	// draw title
 	var titleX = x - 50;
 	var titleY = y;
@@ -63,8 +63,8 @@ BarViz.prototype.draw = function(r, x, y) {
 
 	// draw bar
 	var thisValueWidth = (this.thisValue/this.maxValue) * this.width;
-	r.rect(x, y, thisValueWidth, this.height).attr({fill: "#bfa22f"});
-	
+	r.rect(x, y, thisValueWidth, this.height).attr({fill: color});
+
 	var otherLabelsY = y + this.height + 10;
 	// draw lines for other values
 	console.log(this.otherValues);
@@ -94,15 +94,16 @@ window.onload = function() {
 		legend.push(category + ": %%.%%");
 	}
 
-	var legend_setup = {
+	var options = {
 		legend: legend,
 		legendpos: "east",
+		colors: ["#cad8ea", "#00598c", "#4b7daa", "#afc4dd"],
 	}
 
 	var xPosition = 70;
 	var yPosition = 60;
 	var radius = 55;
-	pie = r.piechart(xPosition, yPosition, radius, values, legend_setup)
+	pie = r.piechart(xPosition, yPosition, radius, values, options)
 
 	// bind on hover behavior to the pie
 	pie.hover(function () {
@@ -135,12 +136,14 @@ window.onload = function() {
 		var thisValue = age_data['breakdown'][category];
 		var otherValues = {
 			'Average': age_data['average breakdown'][category],
-			'Minimum': age_data['minimum breakdown'][category],
-			'Maximum': age_data['maximum breakdown'][category],
+			//'Minimum': age_data['minimum breakdown'][category],
+			//'Maximum': age_data['maximum breakdown'][category],
+			'2000': age_data['2000 breakdown'][category],
 		}
 		barViz = new BarViz(category, thisValue, otherValues);
 		var verticalSpacing = 80;
-		barViz.draw(r, 100, 200 + (i*verticalSpacing));		
+		var color = options["colors"][i];
+		barViz.draw(r, 100, 200 + (i*verticalSpacing), color);
 	}
 }
 
