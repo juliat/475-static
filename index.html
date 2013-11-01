@@ -1,152 +1,155 @@
 <!DOCTYPE html>
 
 <html>
-	<head>
-		<title>Wind Farms</title>
-		<link rel="stylesheet" type="text/css" href="css/normalize.css"/> 
-		<link rel="stylesheet" type="text/css" href="css/styles.css"/> 
-	</head>
-	<body>
-		<script type="text/x-handlebars" data-template-name="windfarms">
+  <head>
+    <title>Wind Farms</title>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css"/>
+    <link rel="stylesheet" type="text/css" href="css/styles.css"/>
+  </head>
+  <body>
+    <script type="text/x-handlebars" data-template-name="windfarms">
 
-		<nav>
-			<div class="logo">Wind Farm Information</div>
-			<div class="searchContainer">
-				<input type="search" placeholder="Enter a location to see wind farms closest to it"> </input>
-			</div>
-			<div class="description">A tool to explore information about existing and proposed wind farms in the United States<a href="">...</a></div>
-		</nav>
+    <nav>
+      <div class="logo">Wind Farm Information</div>
+      <div class="searchContainer">
+        <input type="search" placeholder="Enter a location to see wind farms closest to it"> </input>
+      </div>
+      <div class="description">A tool to explore information about existing and proposed wind farms in the United States<a href="">...</a></div>
+    </nav>
 
-		<div class="map">
-		</div>
-		<div class="mapShadow"></div>
+    <div id="map-canvas" class="map">
+    </div>
 
-		<div class="results">
-			<div class="resultsStatus">
-				<p class="resultsCount">1000 Results, Limited by Location</p>
-				<p class="resultsChangeColumn"><a href="">Change Columns</a></p>
-			</div>
-		
-			<table>
-				<thead>
-					<tr>
-						<th>ID
-							<span class="thControls">
-								<button class="info">Info</button>
-							</span>
-						</th>
-						<th>Status
-							<span class="thControls">
-								<button class="info">Info</button>
-								<button class="sort">Sort</button>
-							</span>
-						</th>
-						<th>Location
-							<span class="thControls">
-								<button class="info">Info</button>
-								<button class="sort">Sort</button>
-							</span>
-						</th>
-						<th>Wind Class
-							<span class="thControls">
-								<button class="info">Info</button>
-								<button class="sort">Sort</button>
-							</span>
-						</th>
-						<th>Megawatts
-							<span class="thControls">
-								<button class="info">Info</button>
-								<button class="sort">Sort</button>
-							</span>
-						</th>
-						<th>Population Density
-							<span class="thControls">
-								<button class="info">Info</button>
-								<button class="sort">Sort</button>
-							</span>
-						</th>
-						<th>Endangered Species
-							<span class="thControls">
-								<button class="info">Info</button>
-								<button class="sort">Sort</button>
-							</span>
-						</th>
-					</tr>
-				</thead>         
-				<tbody>
-					{{#each}}
-					<tr>
-						<td>{{id}}</td>
-						<td>{{status}}</td>
-						<td>{{location}}</td>
-						<td>Class {{windClass}}</td>
-						<td>{{output}} <span class="units">MW</span></td>
-						<td>{{populationDensity}} <span class="units">people/sq.mi.</span></td>
-						<td>{{numEndangeredSpecies}} <span class="units">species</span></td>
-					</tr>
-					{{/each}}
-				</tbody>
-			</table>	
-		</div>
+    <div class="results">
+      <div class="resultsStatus">
+        <p class="resultsCount">16 Results, Limited by Location</p>
+        <p class="resultsChangeColumn"><a href="">Change Columns</a></p>
+      </div>
 
-		<article class="profile opposed hidden" id="selectedSiteProfile">
-			<section class="windSiteMeta">
-				
-				<hgroup>
-					<h1 class="name">Sample Wind Farm</h1>
-					<h2 class="location">Warren County, NY</h2>
-					<h2 class="status">Opposed</h2>
-				</hgroup>
-				<nav class="windSiteNav">
-					<ul>
-						<li><h5><a>Facility Details</a></h5></li>
-						<li><h5><a>Opposition</a></h5></li>
-						<li class="selected"><h5>Land</h5>
-							<ul>
-								<li><a>Development</a></li>
-								<li><a>Ecosystems</a></li>
-							</ul>
-						</li>
-						<li><h5><a>Housing</a></h5></li>
-						<li><h5>Economy</h5>
-							<ul>
-								<li><a>Basics</a></li>
-								<li><a>Poverty</a></li>
-								<li><a>Employment</a></li>
-							</ul>
-						</li>
-						<li><h5>Population</h5>
-							<ul>
-								<li><a>Basics</a></li>
-								<li><a>Age</a></li>
-								<li><a>Education</a></li>
-								<li><a>Race</a></li>
-							</ul>
-						</li>
-					</ul>
-				</nav>
-			</section>
-			<section class="windSiteInfo land">
-				<h1>Land</h1>
-				<h2>Type of Surrounding Land</h2>
-				<img src="./img/landtypes.png"/>
-				<h2>Development</h2>
-				<img src="./img/developmentlevels.png"/>
-				<h2>Ecosystems</h2>
-				<img src="./img/ecosystems.png"/>
-			</section>
-		</article>
+      <table>
+        <thead>
+          <tr>
+            <th>ID
+              <span class="thControls">
+                <button class="info">Info</button>
+              </span>
+            </th>
+            <th>Status
+              <span class="thControls">
+                <button class="info">Info</button>
+                <button class="sort">Sort</button>
+              </span>
+            </th>
+            <th>Location
+              <span class="thControls">
+                <button class="info">Info</button>
+                <button class="sort">Sort</button>
+              </span>
+            </th>
+            <th>Wind Class
+              <span class="thControls">
+                <button class="info">Info</button>
+                <button class="sort">Sort</button>
+              </span>
+            </th>
+            <th>Megawatts
+              <span class="thControls">
+                <button class="info">Info</button>
+                <button class="sort">Sort</button>
+              </span>
+            </th>
+            <th>Population Density
+              <span class="thControls">
+                <button class="info">Info</button>
+                <button class="sort">Sort</button>
+              </span>
+            </th>
+            <th>Endangered Species
+              <span class="thControls">
+                <button class="info">Info</button>
+                <button class="sort">Sort</button>
+              </span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each}}
+          <tr>
+            <td>{{id}}</td>
+            <td>{{status}}</td>
+            <td>{{location}}</td>
+            <td>Class {{windClass}}</td>
+            <td>{{output}} <span class="units">MW</span></td>
+            <td>{{populationDensity}} <span class="units">people/sq.mi.</span></td>
+            <td>{{numEndangeredSpecies}} <span class="units">species</span></td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
 
-		</script>
-		<script src="js/libs/jquery-1.10.2.min.js"></script>
-		<script src="js/libs/handlebars-1.0.0.js"></script>
-		<script src="js/libs/ember.js"></script>
-		<script src="js/libs/ember-data.js"></script>
+    <article class="profile opposed hidden" id="selectedSiteProfile">
+      <section class="windSiteMeta">
 
-		 <script src="js/demo.js"></script>
+        <hgroup>
+          <h1 class="name">Sample Wind Farm</h1>
+          <h2 class="location">Warren County, NY</h2>
+          <h2 class="status">Opposed</h2>
+        </hgroup>
+        <nav class="windSiteNav">
+          <ul>
+            <li><h5><a>Facility Details</a></h5></li>
+            <li><h5><a>Opposition</a></h5></li>
+            <li class="selected"><h5>Land</h5>
+              <ul>
+                <li><a>Development</a></li>
+                <li><a>Ecosystems</a></li>
+              </ul>
+            </li>
+            <li><h5><a>Housing</a></h5></li>
+            <li><h5>Economy</h5>
+              <ul>
+                <li><a>Basics</a></li>
+                <li><a>Poverty</a></li>
+                <li><a>Employment</a></li>
+              </ul>
+            </li>
+            <li><h5>Population</h5>
+              <ul>
+                <li><a>Basics</a></li>
+                <li><a>Age</a></li>
+                <li><a>Education</a></li>
+                <li><a>Race</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </section>
+      <section class="windSiteInfo land">
+        <h1>Land</h1>
+        <h2>Type of Surrounding Land</h2>
+        <img src="./img/landtypes.png"/>
+        <h2>Development</h2>
+        <img src="./img/developmentlevels.png"/>
+        <h2>Ecosystems</h2>
+        <img src="./img/ecosystems.png"/>
+      </section>
+    </article>
 
-		<script src="js/application.js"></script>
- 		<script src="js/router.js"></script>
- 		<script src="js/models/windfarm.js"></script>
-	</body>
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script src="js/libs/jquery-1.10.2.min.js"></script>
+    <script src="js/libs/handlebars-1.0.0.js"></script>
+    <script src="js/libs/ember.js"></script>
+    <script src="js/libs/ember-data.js"></script>
+
+    <script src="js/demo.js"></script>
+
+    <script src="js/application.js"></script>
+    <script src="js/router.js"></script>
+    <script src="js/models/windfarm.js"></script>
+
+    <script src="js/map.js"></script>
+  </body>
 </html>
