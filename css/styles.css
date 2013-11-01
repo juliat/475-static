@@ -1,76 +1,262 @@
+* {
+	box-sizing: border-box;
+}
+
 body, html {
 	height: 100%;
+	font-family: "Open Sans";
+	font-size: 14px;
 }
-.filters, .map, .results {
+/*fix border*/
+nav {
+  background-color: #fff;
+  width: 100%;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.logo {
+    text-align: center;
+    font-weight: bold;
+    width: 14%;
+}
+
+.logo, .searchContainer, .description {
+	display: inline-block;
+	padding: 1em 0;
+}
+
+.description {
+	width: 40%;
+	text-align: center;
+	margin-left: 0;
+	font-weight: lighter;
+	font-style: italic;
+	padding-left: 0;
+}
+
+.searchContainer {
+	width: 42.75%;
+	padding-left: inherit;
+	border-left: 1px solid #e6e6e6;
+	border-right: 1px solid #e6e6e6;
+}
+
+.searchContainer input[type="search"] {
+    border: none;
+    width: 95%;
+    padding-left: 1em;
+}
+
+.searchContainer input[type="search"]:focus {
+	outline: 0;
+}
+
+.map, .results {
 	display: inline-block;
 	float: left;
-	border: 1px solid black;
 	height: 100%;
 	overflow: scroll;
-}
-.filters {
-	width: 20%;
-	font-size: 0.9em;
-}
-.filters h1 {
-	font-size: 1.2em;
-	margin-bottom: 0.2em;
-	margin-left: 5%;
-	margin-top: 0.5em;
-}
-.filters h2 {
-	font-size: 1.1em;
-	margin-top: 0.2em;
-	margin-bottom: 0.1em;
+	z-index: 0;
 }
 
-.filters label {
-	display: block;
-	padding-top: 0.5em;
-}
-
-.filters .status-select label,
-.filters .radius-select label {
-	display: inline-block;
-}
-
-.advanced-filters {
-	padding-left: 5%;
-}
-.advanced-filters ul {
-	list-style-type: none;
-	margin:0;
-	padding:0;
-}
-.advanced-filters li {
-	padding: 0;
-}
-
-
-.map {
-	width: 44.5%;
-}
-.map iframe {
-	width: 100%;
+.mapShadow {
+	-webkit-box-shadow: inset -2px 4px 10px -3px rgba(129, 129, 129, 0.6);
+	-moz-box-shadow: inset -2px 4px 10px -3px rgba(89,88,89,0.6);
+	box-shadow: inset -2px 4px 10px -3px rgba(129, 129, 129, 0.6);
+	position: absolute;
 	height: 100%;
 }
 
+.mapShadow, .map, .results {
+	width: 57%;
+}
+.map {
+	height: 100%;
+	background-image: url("../img/map.png");
+	background-size: cover;
+	width: 57%;
+	position: absolute;
+}
+
+.resultsCount, .resultsChangeColumn {
+    margin: 0;
+    padding: 0.5em;
+}
+
+.resultsCount{
+	float: left;
+}
+
+.resultsChangeColumn{
+	float: right;
+}
+.resultsChangeColumn a {
+	text-decoration: none;
+}
 
 .results {
-	width: 35%;
 	font-size: 0.9em;
+	width: 43%;
+	float: right;
 }
 
-.results tr {
-	border-bottom: 1px solid #ccc;
+.results tbody {
+	overflow: scroll;
 }
+
+.results table {
+	width: 100%;
+}
+
+.results thead tr {
+	border: 1px solid #e6e6e6;
+	background: white;
+}
+.results thead th, .results td {
+	border-left: 1px solid #f2f2f2;
+}
+
+.results table {
+	border: 1px solid #e6e6e6;
+}
+
+tr:nth-child(even){
+	background-color: white;
+}
+
+tr:nth-child(odd){
+	background-color: #fcfcfc;
+}
+
 .results th, td {
-	border-left: 1px solid #eee;
+	text-align: left;
 }
+
+.results th {
+	padding: 1em 0.75em 0.6em; 
+	vertical-align: bottom;
+}
+
+.results tbody tr.selected {
+	background-color: yellow;
+}
+
+.thControls {
+    display: block;
+}
+.thControls button {
+    background-color:  #eee;
+    border: 0;
+    border-radius: 4px;
+    font-size: 0.8em;
+    padding: 0.2em 0.3em;
+}
+
+.thControls button:hover {
+	background-color: #666;
+	color: #fff;
+	transition: all 0.3s;
+}
+
 .results td {
-	padding: 0.25em 0.5em;
+	padding: 0.75em 0.75em;
+	font-size: 0.975em;
+	color: #555;
 }
-.results td .units {
-	font-size: 0.7em;
-	display:block;
+
+/* center numbers in ID column */
+.results tbody td:first-child {
+	text-align: center;
+}
+
+
+article.profile {
+    position: absolute;
+    right: 43%;
+    background-color: white;
+    height: 100%;
+    width: 43%;
+   	overflow: scroll;
+    top: 0;
+    display:none;
+}
+
+.windSiteMeta, .windSiteInfo {
+}
+
+.windSiteMeta {
+    border-left: 1px solid #e6e6e6;
+    border-right: 1px solid #e6e6e6;
+}
+
+.windSiteMeta nav {
+	border-bottom: none;
+	padding-left: 1em;
+	padding-bottom: 0.6em;
+}
+
+.windSiteMeta .profile-pic {
+	height: 11.2em;
+	width: 100%;
+	background-image: url("../img/sample-profile-pic.png");
+	background-size: 123%;
+	background-position: 50%;
+	margin-bottom: 0.5em
+}
+
+.windSiteMeta hgroup {
+    height: 3.55em;
+    border-bottom: 1px solid #e6e6e6;
+    padding-top: 1em;
+    padding-left: 1em;
+}
+
+.windSiteMeta h1, .windSiteMeta h2, .windSiteMeta h3 {
+    margin: 0;
+    font-size: 1em;
+	display: inline-block;
+	padding-right: 1em;
+}
+
+.windSiteMeta h4 {
+    font-weight: normal;
+    font-style: italic;
+    font-size: 0.9em;
+}
+.windSiteMeta h2 {
+    font-weight: normal;
+}
+.windSiteMeta .status {
+    font-style: italic;
+}
+
+.windSiteMeta nav ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+.windSiteMeta nav > ul > li h5 {
+	font-weight: bold;
+	margin-top: 1em; 
+	margin-bottom: 0.25em;
+	padding-right: 1.25em;
+}
+.windSiteMeta nav ul ul li {
+	font-size: 0.9em;
+	color: #666;
+	font-weight: normal;
+	visibility: hidden;
+	display: none;
+}
+
+.windSiteInfo {
+    clear: both;
+    border-top: 1px solid #ededed;
+    padding-left: 1em;
+}
+.windSiteInfo h2  {
+	margin-bottom: 0;
+}
+.windSiteNav li {
+    display: inline-block;
 }
