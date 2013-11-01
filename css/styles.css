@@ -70,9 +70,12 @@ nav {
 .mapShadow, .map, .results {
 	width: 57%;
 }
-.map iframe {
-	width: 100%;
+.map {
 	height: 100%;
+	background-image: url("../img/map.png");
+	background-size: cover;
+	width: 57%;
+	position: absolute;
 }
 
 .resultsCount, .resultsChangeColumn {
@@ -95,6 +98,10 @@ nav {
 	font-size: 0.9em;
 	width: 43%;
 	float: right;
+}
+
+.results tbody {
+	overflow: scroll;
 }
 
 .results table {
@@ -169,10 +176,9 @@ article.profile {
     background-color: white;
     height: 100%;
     width: 43%;
-   	
-	
-	
+   	overflow: scroll;
     top: 0;
+    display:none;
 }
 
 .windSiteMeta, .windSiteInfo {
@@ -250,4 +256,7 @@ article.profile {
 }
 .windSiteInfo h2  {
 	margin-bottom: 0;
+}
+.windSiteNav li {
+    display: inline-block;
 }
