@@ -7,8 +7,6 @@
     <link rel="stylesheet" type="text/css" href="css/styles.css"/>
   </head>
   <body>
-    <script type="text/x-handlebars" data-template-name="windfarms">
-
     <nav>
       <div class="logo">Wind Farm Information</div>
       <div class="searchContainer">
@@ -19,7 +17,7 @@
 
     <div id="map-canvas" class="map">
     </div>
-
+    
     <div class="results">
       <div class="resultsStatus">
         <p class="resultsCount">16 Results, Limited by Location</p>
@@ -29,51 +27,20 @@
       <table>
         <thead>
           <tr>
-            <th>ID
+         <script type="text/x-handlebars" data-template-name="windfarmAttributes">
+         {{#each model}}
+            <th>{{name}}
               <span class="thControls">
                 <button class="info">Info</button>
               </span>
             </th>
-            <th>Status
-              <span class="thControls">
-                <button class="info">Info</button>
-                <button class="sort">Sort</button>
-              </span>
-            </th>
-            <th>Location
-              <span class="thControls">
-                <button class="info">Info</button>
-                <button class="sort">Sort</button>
-              </span>
-            </th>
-            <th>Wind Class
-              <span class="thControls">
-                <button class="info">Info</button>
-                <button class="sort">Sort</button>
-              </span>
-            </th>
-            <th>Megawatts
-              <span class="thControls">
-                <button class="info">Info</button>
-                <button class="sort">Sort</button>
-              </span>
-            </th>
-            <th>Population Density
-              <span class="thControls">
-                <button class="info">Info</button>
-                <button class="sort">Sort</button>
-              </span>
-            </th>
-            <th>Endangered Species
-              <span class="thControls">
-                <button class="info">Info</button>
-                <button class="sort">Sort</button>
-              </span>
-            </th>
+          {{/each}}
+         </script>
           </tr>
         </thead>
         <tbody>
-          {{#each}}
+        <script type="text/x-handlebars" data-template-name="windfarms">
+          {{#each model}}
           <tr>
             <td>{{id}}</td>
             <td>{{status}}</td>
@@ -84,6 +51,7 @@
             <td>{{numEndangeredSpecies}} <span class="units">species</span></td>
           </tr>
           {{/each}}
+        </script>
         </tbody>
       </table>
     </div>
@@ -135,8 +103,6 @@
         <img src="./img/ecosystems.png"/>
       </section>
     </article>
-
-    </script>
 
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
     <script src="js/libs/jquery-1.10.2.min.js"></script>

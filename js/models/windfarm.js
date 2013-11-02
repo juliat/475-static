@@ -1,4 +1,4 @@
-WindfarmApp.Windfarm = DS.Model.extend({
+App.Windfarm = DS.Model.extend({
   location: DS.attr('string'),
   status: DS.attr('string'),
   windClass: DS.attr('int'),
@@ -8,7 +8,7 @@ WindfarmApp.Windfarm = DS.Model.extend({
 });
 
 /* fixture data */
-WindfarmApp.Windfarm.FIXTURES = [
+App.Windfarm.FIXTURES = [
  {
    id: 1,
    location: 'Warren County, NY',
