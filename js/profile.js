@@ -15,19 +15,19 @@ var age_data = {
 		'under 17': 23.5,
 		'18 to 24': 7.5,
 		'25 to 64': 52.2,
-		'65 and over': 16.7,		
+		'65 and over': 16.7,
 	},
 	'minimum breakdown': {
 		'under 17': 0.99,
 		'18 to 24': 0,
 		'25 to 64': 28.99,
-		'65 and over': 3.66,	
+		'65 and over': 3.66,
 	},
 	'maximum breakdown': {
 		'under 17': 43.68,
 		'18 to 24': 45.67,
 		'25 to 64': 80.25,
-		'65 and over': 63.38,			
+		'65 and over': 63.38,
 	}
 }
 
@@ -36,7 +36,7 @@ var age_data = {
 // - minValue as float
 // - maxValue as float
 // - thisValue
-// - hashmap of other values, names and values 
+// - hashmap of other values, names and values
 
 function BarViz(name, thisValue, otherValues) {
 	this.width = 400;
@@ -64,7 +64,7 @@ BarViz.prototype.draw = function(r, x, y, color) {
 	// draw bar
 	var thisValueWidth = (this.thisValue/this.maxValue) * this.width;
 	r.rect(x, y, thisValueWidth, this.height).attr({fill: color});
-	
+
 	var otherLabelsY = y + this.height + 10;
 	// draw lines for other values
 	console.log(this.otherValues);
@@ -143,7 +143,7 @@ window.onload = function() {
 		barViz = new BarViz(category, thisValue, otherValues);
 		var verticalSpacing = 80;
 		var color = options["colors"][i];
-		barViz.draw(r, 100, 200 + (i*verticalSpacing), color);		
+		barViz.draw(r, 100, 200 + (i*verticalSpacing), color);
 	}
 }
 

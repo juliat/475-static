@@ -59,21 +59,12 @@ nav {
 	z-index: 0;
 }
 
-.mapShadow {
-	-webkit-box-shadow: inset -2px 4px 10px -3px rgba(129, 129, 129, 0.6);
-	-moz-box-shadow: inset -2px 4px 10px -3px rgba(89,88,89,0.6);
-	box-shadow: inset -2px 4px 10px -3px rgba(129, 129, 129, 0.6);
-	position: absolute;
-	height: 100%;
-}
-
-.mapShadow, .map, .results {
+.map, .results {
 	width: 57%;
 }
+
 .map {
 	height: 100%;
-	background-image: url("../img/map.png");
-	background-size: cover;
 	width: 57%;
 	position: absolute;
 }
@@ -133,7 +124,7 @@ tr:nth-child(odd){
 }
 
 .results th {
-	padding: 1em 0.75em 0.6em; 
+	padding: 1em 0.75em 0.6em;
 	vertical-align: bottom;
 }
 
@@ -237,7 +228,7 @@ article.profile {
 }
 .windSiteMeta nav > ul > li h5 {
 	font-weight: bold;
-	margin-top: 1em; 
+	margin-top: 1em;
 	margin-bottom: 0.25em;
 	padding-right: 1.25em;
 }
