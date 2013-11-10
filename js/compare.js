@@ -33,6 +33,7 @@ function RangeViz(name, values) {
   this.height = 60;
   this.minValue = values['meta_values']['min'];
   this.maxValue = values['meta_values']['max'];
+  this.metaValues = values['meta_values'];
   this.name = name;
   this.values = values['values'];
 }
@@ -68,6 +69,27 @@ RangeViz.prototype._drawValueMarker = function(r, valueX, y) {
     );
 }
 
+RangeViz.prototype._drawMarkerSet = function(set, r, x, y, type) {
+  var rangeWidth = this.width - x;
+  
+  // iterate over hash (set)
+  for (var key in set) {
+    // get value from values hash
+    var value = set[key];
+    // calculate x position proportionate to value
+    var valueXOffset = (value/this.maxValue) * rangeWidth;
+    var valueX = x + valueXOffset;
+
+    if (type == 'value') {
+      this._drawValueMarker(r, valueX, y);
+    }
+    else if (type == 'meta') {
+      var label = key;
+      this._drawVerticalMarker(r, valueX, y, label);
+    }
+  }  
+}
+
 // set up RangeViz class
 RangeViz.prototype.draw = function(raphael, x, y) {
   var r = raphael;
@@ -88,21 +110,11 @@ RangeViz.prototype.draw = function(raphael, x, y) {
   // http://raphaeljs.com/reference.html#Paper.path
   r.path("M"+x+","+y+"H"+maxX);
 
-  this._drawVerticalMarker(r, x, y, "min");
-  this._drawVerticalMarker(r, maxX, y, "max");
+  // draw meta markers
+  this._drawMarkerSet(this.metaValues, r, x, y, 'meta');
 
-  var rangeWidth = this.width - x;
-
-  // draw dots along line at x locations proportionate to their values
-  for (var key in this.values) {
-    // get value from values hash
-    var value = this.values[key];
-    // calculate x position proportionate to value
-    var valueXOffset = (value/this.maxValue) * rangeWidth;
-    var valueX = x + valueXOffset;
-
-    this._drawValueMarker(r, valueX, y);
-  }
+  // draw value markers
+  this._drawMarkerSet(this.values, r, x, y, 'value');
 };
 
 
