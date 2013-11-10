@@ -1,53 +1,95 @@
 // just fake data to work with
 // ones with numebrs are meant to be site id: value
 var sites_megawatts = {
-  'min': 3,
-  'max': 50,
-  'average_proposed': 30,
-  'average_opposed': 32,
-  'average_active': 35,
-  '1': 20,
-  '2': 40,
-  '3': 35,
-  '4': 12,
-  '5': 3,
-  '6': 23,
-  '7': 17,
-  '8': 28,
-  '9': 34,
-  '10': 34,
-  '11': 25,
-  '12': 15,
-  '13': 5,
-  '14': 18,
-  '15': 33,
-  '16': 31
+  'meta_values': {
+    'min': 3,
+    'max': 50,
+    'average_proposed': 30,
+    'average_opposed': 32,
+    'average_active': 35,
+  },
+  'values': {
+    '1': 20,
+    '2': 40,
+    '3': 35,
+    '4': 12,
+    '5': 3,
+    '6': 23,
+    '7': 17,
+    '8': 28,
+    '9': 34,
+    '10': 34,
+    '11': 25,
+    '12': 15,
+    '13': 5,
+    '14': 18,
+    '15': 33,
+    '16': 31
+  }
 }
 
 function RangeViz(name, values) {
-  this.width = 800;
+  this.width = 600;
   this.height = 60;
-  this.minValue = values['min'];
-  this.maxValue = values['max'];
+  this.minValue = values['meta_values']['min'];
+  this.maxValue = values['meta_values']['max'];
   this.name = name;
-  this.values = values;
+  this.values = values['values'];
+}
+
+RangeViz.prototype._drawVerticalMarker = function(r, x, y, label) {
+  // markers at each end
+  var markerHeight = this.height/4;
+  var markerY1 = (y-(markerHeight/2));
+  var markerY2 = (y+(markerHeight/2));
+  var markerLabelY = markerY2 + (markerHeight/2);
+
+  // draw
+  r.path("M"+x+","+markerY1+"V"+markerY2);
+  r.text(x, markerLabelY, label);
+}
+
+RangeViz.prototype._drawValueMarker = function(r, valueX, y) {
+    // draw circle at location (no labels right now)
+    var color = "red";
+    var radius = this.height/14;
+    var valueCircle = r.circle(valueX, y, radius).attr({"fill": color});
+
+    valueCircle.hover(
+      // mouseover
+      function () {
+        console.log('hey');
+        this.attr({"fill": "#444"});
+      },
+      // mouseout
+      function () {
+        this.attr({"fill": color});
+      }
+    );
 }
 
 // set up RangeViz class
 RangeViz.prototype.draw = function(raphael, x, y) {
   var r = raphael;
-  // draw title
-  var titleX = x;
-  var titleY = y;
+
   // draw title, left-aligned
-  r.text(titleX, titleY, this.name).attr({'text-anchor': 'start'});
+  r.text(x, y, this.name).attr({
+    'text-anchor': 'start',
+    'font-weight': 'bold',
+  });
 
-  // viz is 50px below title
-  y = y+50;
+  var titleBottomMargin = this.height/2;
+  // everything will be drawn below title from here on out, so adjust y
+  y = y+titleBottomMargin;
+  var minX = x;
+  var maxX = x + this.width;
 
-  // draw base line
+  // draw base line/range
   // http://raphaeljs.com/reference.html#Paper.path
-  r.path("M"+x+","+y+"H"+(x+this.width));
+  r.path("M"+x+","+y+"H"+maxX);
+
+  this._drawVerticalMarker(r, x, y, "min");
+  this._drawVerticalMarker(r, maxX, y, "max");
 
   var rangeWidth = this.width - x;
 
@@ -59,26 +101,8 @@ RangeViz.prototype.draw = function(raphael, x, y) {
     var valueXOffset = (value/this.maxValue) * rangeWidth;
     var valueX = x + valueXOffset;
 
-    // draw circle at location (no labels right now)
-    var color = "red";
-    var radius = 4;
-    var valueCircle = r.circle(valueX, y, radius).attr({"fill": color});
-
-    valueCircle.hover(
-      // in
-      function () {
-        console.log('hey');
-        this.attr({"fill": "#444"});
-      },
-      // out
-      function () {
-        this.attr({"fill": color});
-      }
-    );
-
+    this._drawValueMarker(r, valueX, y);
   }
-
-
 };
 
 
