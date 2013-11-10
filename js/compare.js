@@ -50,7 +50,6 @@ RangeViz.prototype.draw = function(raphael, x, y) {
   r.path("M"+x+","+y+"H"+(x+this.width));
 
   var rangeWidth = this.width - x;
-  var valueMarkers = [];
 
   // draw dots along line at x locations proportionate to their values
   for (var key in this.values) {
@@ -64,13 +63,8 @@ RangeViz.prototype.draw = function(raphael, x, y) {
     var color = "red";
     var radius = 4;
     var valueCircle = r.circle(valueX, y, radius).attr({"fill": color});
-    valueMarkers.push(valueCircle);
-  }
 
-  // bind behavior to all valueMarkers
-  for (var i = 0; i < valueMarkers.length; i++) {
-    // bind mouseover behavior to the valueCircle
-    valueMarkers[i].hover(
+    valueCircle.hover(
       // in
       function () {
         console.log('hey');
@@ -81,7 +75,10 @@ RangeViz.prototype.draw = function(raphael, x, y) {
         this.attr({"fill": color});
       }
     );
+
   }
+
+
 };
 
 
