@@ -25,8 +25,8 @@ var sites_megawatts = {
 }
 
 function RangeViz(name, values) {
-  this.width = 400;
-  this.height = 30;
+  this.width = 800;
+  this.height = 60;
   this.minValue = values['min'];
   this.maxValue = values['max'];
   this.name = name;
@@ -34,7 +34,8 @@ function RangeViz(name, values) {
 }
 
 // set up RangeViz class
-RangeViz.prototype.draw = function(r, x, y) {
+RangeViz.prototype.draw = function(raphael, x, y) {
+  var r = raphael;
   // draw title
   var titleX = x;
   var titleY = y;
@@ -49,6 +50,7 @@ RangeViz.prototype.draw = function(r, x, y) {
   r.path("M"+x+","+y+"H"+(x+this.width));
 
   var rangeWidth = this.width - x;
+  var valueMarkers = [];
 
   // draw dots along line at x locations proportionate to their values
   for (var key in this.values) {
@@ -59,9 +61,26 @@ RangeViz.prototype.draw = function(r, x, y) {
     var valueX = x + valueXOffset;
 
     // draw circle at location (no labels right now)
-    var color = "#000";
-    var radius = 2;
-    r.circle(valueX, y, radius).attr({fill: color});
+    var color = "red";
+    var radius = 4;
+    var valueCircle = r.circle(valueX, y, radius).attr({"fill": color});
+    valueMarkers.push(valueCircle);
+  }
+
+  // bind behavior to all valueMarkers
+  for (var i = 0; i < valueMarkers.length; i++) {
+    // bind mouseover behavior to the valueCircle
+    valueMarkers[i].hover(
+      // in
+      function () {
+        console.log('hey');
+        this.attr({"fill": "#444"});
+      },
+      // out
+      function () {
+        this.attr({"fill": color});
+      }
+    );
   }
 };
 
@@ -73,6 +92,6 @@ window.onload = function() {
 
   var category = "megawatts";
 
-  barViz = new RangeViz(category, sites_megawatts);
-  barViz.draw(r, 100, 200);
+  rangeViz = new RangeViz(category, sites_megawatts);
+  rangeViz.draw(r, 100, 200);
 }
